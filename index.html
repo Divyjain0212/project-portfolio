@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Divy Jain | Portfolio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      scroll-behavior: smooth;
+      background-color: #fcfdfe; /* Very light, almost white base */
+      overflow-x: hidden; /* Prevent horizontal scroll from large blob */
+      position: relative; /* For the blob's absolute positioning */
+      z-index: 0; /* Ensure body is behind blob content */
+    }
+
+    /* Animated Blob Background Theme */
+    .bg-blob {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: -1; /* Place behind other content */
+    }
+
+    .bg-blob::before {
+      content: '';
+      position: absolute;
+      width: 800px; /* Size of the blob */
+      height: 800px;
+      background: radial-gradient(circle, rgba(147,197,253,0.3) 0%, rgba(129,140,248,0.2) 50%, rgba(255,255,255,0) 100%); /* Light blue to light indigo gradient */
+      border-radius: 40% 60% 70% 30% / 40% 50% 60% 70%; /* Organic, blob-like shape */
+      filter: blur(80px); /* Soft blur to make it ethereal */
+      animation: blobMove 40s linear infinite alternate; /* Slow, alternating movement */
+      transform: translate(-50%, -50%); /* Start off-center */
+    }
+
+    @keyframes blobMove {
+      0% { transform: translate(-50%, -50%) rotate(0deg); opacity: 0.7; }
+      25% { transform: translate(-40%, -60%) rotate(10deg); opacity: 0.8; }
+      50% { transform: translate(-60%, -40%) rotate(20deg); opacity: 0.7; }
+      75% { transform: translate(-55%, -55%) rotate(15deg); opacity: 0.8; }
+      100% { transform: translate(-50%, -50%) rotate(0deg); opacity: 0.7; }
+    }
+
+    /* Custom Animations */
+    @keyframes fadeInSlideUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .animate-fade-in-up {
+      animation: fadeInSlideUp 0.8s ease-out forwards;
+      opacity: 0; /* Start hidden */
+    }
+
+    .delay-100 { animation-delay: 0.1s; }
+    .delay-200 { animation-delay: 0.2s; }
+    .delay-300 { animation-delay: 0.3s; }
+    .delay-400 { animation-delay: 0.4s; }
+    .delay-500 { animation-delay: 0.5s; }
+
+    /* Hover Effects */
+    .hover-card:hover {
+      transform: translateY(-8px); /* More pronounced lift */
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15); /* Stronger, deeper shadow */
+      border-color: #6366f1; /* Border color change on hover */
+    }
+
+    /* Custom gradient for buttons/elements */
+    .btn-gradient {
+      background-image: linear-gradient(to right, #4F46E5, #8B5CF6); /* Indigo to Purple */
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+    }
+    .btn-gradient:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0) 100%);
+      transition: all 0.4s ease;
+      z-index: -1;
+    }
+    .btn-gradient:hover:before {
+      left: 100%;
+    }
+    .btn-gradient:hover {
+      transform: translateY(-3px); /* Slightly more lift */
+      box-shadow: 0 10px 20px rgba(79, 70, 229, 0.4); /* Shadow with gradient color */
+    }
+
+    .skill-tag {
+      transition: all 0.3s ease;
+    }
+    .skill-tag:hover {
+      background-color: #EEF2FF; /* Light indigo on hover */
+      color: #4F46E5; /* Indigo text on hover */
+      transform: scale(1.08); /* Slightly more zoom */
+      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    }
+
+    /* Hero Section Specific */
+    .hero-pattern {
+      background-image: url('https://www.transparenttextures.com/patterns/cubes.png');
+      background-size: 150px;
+      opacity: 0.08;
+      animation: panBackgroundHero 45s linear infinite alternate;
+    }
+
+    @keyframes panBackgroundHero {
+      0% { background-position: 0% 0%; }
+      100% { background-position: 100% 100%; }
+    }
+
+    /* Scroll down arrow */
+    .scroll-down-arrow {
+      animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+      }
+      40% {
+        transform: translateY(-10px);
+      }
+      60% {
+        transform: translateY(-5px);
+      }
+    }
+
+  </style>
+</head>
+<body>
+  <div class="bg-blob"></div>
+
+  <header class="sticky top-0 bg-white border-b border-gray-100 z-50 shadow-lg py-4">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
+      <h1 class="text-3xl font-extrabold text-indigo-700">Divy Jain</h1>
+      <nav class="hidden md:flex space-x-8 text-base font-medium">
+        <a href="#about" class="text-gray-600 hover:text-indigo-600 transition duration-300 ease-in-out px-2 py-1 rounded-md">About</a>
+        <a href="#skills" class="text-gray-600 hover:text-indigo-600 transition duration-300 ease-in-out px-2 py-1 rounded-md">Skills</a>
+        <a href="#projects" class="text-gray-600 hover:text-indigo-600 transition duration-300 ease-in-out px-2 py-1 rounded-md">Projects</a>
+        <a href="#contact" class="text-gray-600 hover:text-indigo-600 transition duration-300 ease-in-out px-2 py-1 rounded-md">Contact</a>
+      </nav>
+      <div class="md:hidden">
+        <button id="mobile-menu-button" class="text-gray-600 hover:text-indigo-600 focus:outline-none focus:text-indigo-600">
+          <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+    </div>
+    <div id="mobile-menu" class="hidden md:hidden bg-white shadow-xl pb-4">
+      <nav class="flex flex-col items-center space-y-4 text-base font-medium pt-4">
+        <a href="#about" class="block w-full text-center py-2 text-gray-700 hover:text-indigo-600 transition duration-300 ease-in-out" onclick="document.getElementById('mobile-menu').classList.add('hidden')">About</a>
+        <a href="#skills" class="block w-full text-center py-2 text-gray-700 hover:text-indigo-600 transition duration-300 ease-in-out" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Skills</a>
+        <a href="#projects" class="block w-full text-center py-2 text-gray-700 hover:text-indigo-600 transition duration-300 ease-in-out" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Projects</a>
+        <a href="#contact" class="block w-full text-center py-2 text-gray-700 hover:text-indigo-600 transition duration-300 ease-in-out" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="text-center py-16 md:py-20 lg:py-24 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 overflow-hidden relative min-h-[15vh] flex items-center justify-center">
+    <div class="absolute inset-0 hero-pattern z-0"></div>
+    <div class="relative z-10 px-4">
+      <h2 class="text-5xl md:text-6xl lg:text-7xl font-extrabold mb-4 md:mb-6 text-gray-900 leading-tight animate-fade-in-up">Hi, I'm <span class="text-indigo-600">Divy</span> 👋</h2>
+      <p class="text-lg md:text-xl max-w-xl md:max-w-2xl mx-auto text-gray-700 leading-relaxed animate-fade-in-up delay-200">
+        Aspiring Software Engineer & AI Enthusiast. I love building intelligent tools, full-stack apps, and creative solutions using code.
+      </p>
+      <div class="mt-8 md:mt-10 flex flex-col sm:flex-row justify-center space-y-3 sm:space-y-0 sm:space-x-5 animate-fade-in-up delay-400">
+        <a href="#projects" class="btn-gradient text-white px-8 py-3 md:px-10 md:py-4 rounded-full text-base md:text-lg font-semibold shadow-xl">View My Work</a>
+        <a href="#contact" class="bg-white text-indigo-600 border-2 border-indigo-600 px-8 py-3 md:px-10 md:py-4 rounded-full text-base md:text-lg font-semibold shadow-xl hover:bg-indigo-50 hover:border-indigo-700 transition duration-300 ease-in-out">Get in Touch</a>
+      </div>
+    </div>
+    <div class="absolute bottom-6 left-1/2 -translate-x-1/2 animate-fade-in-up delay-500">
+        <a href="#about" aria-label="Scroll down to About section">
+            <svg class="w-7 h-7 md:w-8 md:h-8 text-indigo-500 scroll-down-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+            </svg>
+        </a>
+    </div>
+  </section>
+
+  <section id="about" class="py-20 max-w-5xl mx-auto px-6 lg:px-8">
+    <h3 class="text-4xl md:text-5xl font-extrabold mb-12 text-center text-gray-900">About Me</h3>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+      <div class="text-lg leading-relaxed text-gray-700 space-y-4">
+        <p>
+          I’m a <span class="font-bold text-indigo-700">2nd-year B.Tech CSE student</span> at Medicaps University, deeply passionate about the intersection of technology and creativity. My focus areas include <span class="font-bold text-indigo-700">AI-powered applications</span>, robust <span class="font-bold text-indigo-700">full-stack development</span>, and intricate <span class="font-bold text-indigo-700">backend logic</span>.
+        </p>
+        <p>
+          I thrive on the challenge of <strong class="text-indigo-600">solving real-world problems</strong> with innovative and practical solutions. My approach involves crafting <strong class="text-indigo-600">clean, scalable, and efficient code</strong> that not only works but is also a joy to maintain and expand.
+        </p>
+        <p>
+          Beyond the code, I'm constantly exploring new technologies and methodologies to broaden my expertise and stay ahead in the fast-evolving tech landscape.
+        </p>
+      </div>
+      <div class="flex justify-center md:justify-end">
+        <img src="image.jpg" alt="Coding illustration" >
+      </div>
+    </div>
+  </section>
+
+  <section id="skills" class="py-20 bg-gray-100 px-6 lg:px-8">
+    <div class="max-w-5xl mx-auto">
+      <h3 class="text-4xl md:text-5xl font-extrabold mb-12 text-center text-gray-900">My Skills</h3>
+      <div class="flex flex-wrap justify-center gap-4 text-base">
+        <span class="skill-tag bg-white text-gray-800 px-6 py-3 rounded-full shadow-md cursor-pointer border border-gray-200">Python</span>
+        <span class="skill-tag bg-white text-gray-800 px-6 py-3 rounded-full shadow-md cursor-pointer border border-gray-200">C++</span>
+        <span class="skill-tag bg-white text-gray-800 px-6 py-3 rounded-full shadow-md cursor-pointer border border-gray-200">Java</span>
+        <span class="skill-tag bg-white text-gray-800 px-6 py-3 rounded-full shadow-md cursor-pointer border border-gray-200">MySQL</span>
+        <span class="skill-tag bg-white text-gray-800 px-6 py-3 rounded-full shadow-md cursor-pointer border border-gray-200">HTML & CSS</span>
+        <span class="skill-tag bg-white text-gray-800 px-6 py-3 rounded-full shadow-md cursor-pointer border border-gray-200">JavaScript</span>
+        <span class="skill-tag bg-white text-gray-800 px-6 py-3 rounded-full shadow-md cursor-pointer border border-gray-200">Tailwind CSS</span>
+        <span class="skill-tag bg-white text-gray-800 px-6 py-3 rounded-full shadow-md cursor-pointer border border-gray-200">JSP & Servlets</span>
+        <span class="skill-tag bg-white text-gray-800 px-6 py-3 rounded-full shadow-md cursor-pointer border border-gray-200">NetBeans IDE</span>
+        <span class="skill-tag bg-white text-gray-800 px-6 py-3 rounded-full shadow-md cursor-pointer border border-gray-200">Git & GitHub</span>
+        <span class="skill-tag bg-white text-gray-800 px-6 py-3 rounded-full shadow-md cursor-pointer border border-gray-200">Machine Learning Basics</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects" class="py-20 max-w-7xl mx-auto px-6 lg:px-8">
+    <h3 class="text-4xl md:text-5xl font-extrabold mb-12 text-center text-gray-900">My Latest Projects</h3>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+      <div class="bg-white p-6 rounded-2xl shadow-xl transition-transform hover-card border-2 border-transparent">
+        <img src="https://images.unsplash.com/photo-1511984242940-27f277732292?auto=format&fit=crop&q=80&w=2670&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Chatbot Project" class="rounded-lg mb-6 w-full h-48 object-cover border border-gray-100">
+        <h4 class="text-2xl font-bold mb-3 text-indigo-600">Chatbot</h4>
+        <p class="text-gray-700 leading-relaxed mb-4 text-sm">An intelligent AI chatbot developed using <span class="font-bold">Python</span> and advanced natural language processing (NLP) libraries, designed for seamless and intuitive user interactions.</p>
+        <div class="flex flex-wrap gap-2 text-xs mb-4">
+          <span class="bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full">Python</span>
+          <span class="bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full">NLP</span>
+          <span class="bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full">AI</span>
+        </div>
+        <a href="#" class="inline-block btn-gradient text-white px-6 py-2 rounded-full text-sm font-medium shadow-md">View Project</a>
+      </div>
+
+      <div class="bg-white p-6 rounded-2xl shadow-xl transition-transform hover-card border-2 border-transparent">
+        <img src="https://images.unsplash.com/photo-1551288259-cd199b4d86a6?auto=format&fit=crop&q=80&w=2670&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Expense Tracker Project" class="rounded-lg mb-6 w-full h-48 object-cover border border-gray-100">
+        <h4 class="text-2xl font-bold mb-3 text-indigo-600">Expense Tracker</h4>
+        <p class="text-gray-700 leading-relaxed mb-4 text-sm">A robust full-stack application enabling users to efficiently track daily expenses and manage personal budgeting, complete with a secure login system and <span class="font-bold">MySQL</span> backend.</p>
+        <div class="flex flex-wrap gap-2 text-xs mb-4">
+          <span class="bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full">Full-stack</span>
+          <span class="bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full">MySQL</span>
+          <span class="bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full">Web Development</span>
+        </div>
+        <a href="#" class="inline-block btn-gradient text-white px-6 py-2 rounded-full text-sm font-medium shadow-md">View Project</a>
+      </div>
+
+      <div class="bg-white p-6 rounded-2xl shadow-xl transition-transform hover-card border-2 border-transparent">
+        <img src="https://images.unsplash.com/photo-1521587765099-cf56e7235d15?auto=format&fit=crop&q=80&w=2670&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Library Management System Project" class="rounded-lg mb-6 w-full h-48 object-cover border border-gray-100">
+        <h4 class="text-2xl font-bold mb-3 text-indigo-600">Library Management System</h4>
+        <p class="text-gray-700 leading-relaxed mb-4 text-sm">A comprehensive system for managing book issuance and returns, featuring secure authentication and an administrative panel, built using <span class="font-bold">JSP</span> and <span class="font-bold">Servlets</span>.</p>
+        <div class="flex flex-wrap gap-2 text-xs mb-4">
+          <span class="bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full">JSP</span>
+          <span class="bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full">Servlets</span>
+          <span class="bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full">Java EE</span>
+        </div>
+        <a href="#" class="inline-block btn-gradient text-white px-6 py-2 rounded-full text-sm font-medium shadow-md">View Project</a>
+      </div>
+
+      <div class="bg-white p-6 rounded-2xl shadow-xl transition-transform hover-card border-2 border-transparent">
+        <img src="https://images.unsplash.com/photo-1582719500696-be4d31b26645?auto=format&fit=crop&q=80&w=2670&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Blood Management System Project" class="rounded-lg mb-6 w-full h-48 object-cover border border-gray-100">
+        <h4 class="text-2xl font-bold mb-3 text-indigo-600">Blood Management System</h4>
+        <p class="text-gray-700 leading-relaxed mb-4 text-sm">A vital system for managing blood donation requests, equipped with advanced filtering capabilities and <span class="font-bold">CSV export</span>, developed using <span class="font-bold">Java</span> and <span class="font-bold">MySQL</span> in <span class="font-bold">NetBeans</span>.</p>
+        <div class="flex flex-wrap gap-2 text-xs mb-4">
+          <span class="bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full">Java</span>
+          <span class="bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full">MySQL</span>
+          <span class="bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full">Desktop App</span>
+        </div>
+        <a href="#" class="inline-block btn-gradient text-white px-6 py-2 rounded-full text-sm font-medium shadow-md">View Project</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="py-20 bg-gray-100 px-6 lg:px-8">
+    <div class="max-w-4xl mx-auto text-center">
+      <h3 class="text-4xl md:text-5xl font-extrabold mb-8 text-gray-900">Get in Touch</h3>
+      <p class="text-lg text-gray-700 mb-8 max-w-2xl mx-auto">
+        Have a question, a project idea, or just want to say hi? Feel free to reach out! I'm always open to discussing new opportunities and collaborations.
+      </p>
+      <div class="space-y-4 text-left inline-block">
+        <p class="text-xl text-gray-800 flex items-center">
+          <span class="mr-3 text-2xl">📧</span> <a href="mailto:divyj12349@gmail.com" class="text-indigo-600 hover:text-indigo-800 font-medium transition duration-300 ease-in-out">divyj12349@gmail.com</a>
+        </p>
+        <p class="text-xl text-gray-800 flex items-center">
+          <span class="mr-3 text-2xl">📱</span> <a href="tel:7999436892" class="text-indigo-600 hover:text-indigo-800 font-medium transition duration-300 ease-in-out">7999436892</a>
+        </p>
+        <p class="text-xl text-gray-800 flex items-center">
+          <span class="mr-3 text-2xl">🔗</span> <a href="https://www.linkedin.com/in/divy-jain-331a5430a/" class="text-indigo-600 hover:text-indigo-800 font-medium transition duration-300 ease-in-out" target="_blank" rel="noopener noreferrer">LinkedIn Profile</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="text-center py-8 bg-white border-t border-gray-100 text-gray-500 text-sm">
+    &copy; 2025 Divy Jain. All rights reserved. Built with ❤️ and <span class="text-indigo-600 font-medium">Tailwind CSS</span>.
+  </footer>
+
+  <script>
+    // Mobile menu toggle
+    document.getElementById('mobile-menu-button').addEventListener('click', function() {
+      document.getElementById('mobile-menu').classList.toggle('hidden');
+    });
+  </script>
+
+</body>
+</html>
