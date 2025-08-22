@@ -144,6 +144,87 @@
       }
     }
 
+    /* Chatbot specific styles */
+    .chatbot-button {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      z-index: 100;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+    .chatbot-button:hover {
+      transform: scale(1.1);
+    }
+    .chatbot-window {
+      position: fixed;
+      bottom: 90px;
+      right: 20px;
+      width: 350px;
+      height: 450px;
+      background-color: #fff;
+      border-radius: 12px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+      display: flex;
+      flex-direction: column;
+      transform: scale(0.8);
+      opacity: 0;
+      transform-origin: bottom right;
+      transition: all 0.3s ease;
+      z-index: 99;
+    }
+    .chatbot-window.visible {
+      transform: scale(1);
+      opacity: 1;
+    }
+    .chatbot-header {
+      background-image: linear-gradient(to right, #4F46E5, #8B5CF6);
+      color: white;
+      padding: 1rem;
+      border-top-left-radius: 12px;
+      border-top-right-radius: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .chatbot-messages {
+      flex-grow: 1;
+      padding: 1rem;
+      overflow-y: auto;
+      background-color: #f7f9fc;
+    }
+    .chatbot-input {
+      border-top: 1px solid #e2e8f0;
+      padding: 1rem;
+      display: flex;
+      gap: 0.5rem;
+    }
+    .chatbot-message-user {
+      background-color: #eef2ff;
+      color: #1e293b;
+      padding: 0.5rem 1rem;
+      border-radius: 12px 12px 0 12px;
+      margin-bottom: 0.75rem;
+      align-self: flex-end;
+      max-width: 85%;
+    }
+    .chatbot-message-bot {
+      background-color: #fff;
+      color: #4b5563;
+      padding: 0.5rem 1rem;
+      border-radius: 12px 12px 12px 0;
+      margin-bottom: 0.75rem;
+      align-self: flex-start;
+      max-width: 85%;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    }
   </style>
 </head>
 <body>
@@ -190,9 +271,9 @@
     </div>
     <div class="absolute bottom-6 left-1/2 -translate-x-1/2 animate-fade-in-up delay-500">
         <a href="#about" aria-label="Scroll down to About section">
-            <svg class="w-7 h-7 md:w-8 md:h-8 text-indigo-500 scroll-down-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
-            </svg>
+          <svg class="w-7 h-7 md:w-8 md:h-8 text-indigo-500 scroll-down-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+          </svg>
         </a>
     </div>
   </section>
@@ -240,7 +321,6 @@
     <h3 class="text-4xl md:text-5xl font-extrabold mb-12 text-center text-gray-900">My Latest Projects</h3>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
       <div class="bg-white p-6 rounded-2xl shadow-xl transition-transform hover-card border-2 border-transparent">
-        <img src="https://images.unsplash.com/photo-1511984242940-27f277732292?auto=format&fit=crop&q=80&w=2670&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Chatbot Project" class="rounded-lg mb-6 w-full h-48 object-cover border border-gray-100">
         <h4 class="text-2xl font-bold mb-3 text-indigo-600">Chatbot</h4>
         <p class="text-gray-700 leading-relaxed mb-4 text-sm">An intelligent AI chatbot developed using <span class="font-bold">Python</span> and advanced natural language processing (NLP) libraries, designed for seamless and intuitive user interactions.</p>
         <div class="flex flex-wrap gap-2 text-xs mb-4">
@@ -252,7 +332,6 @@
       </div>
 
       <div class="bg-white p-6 rounded-2xl shadow-xl transition-transform hover-card border-2 border-transparent">
-        <img src="https://images.unsplash.com/photo-1551288259-cd199b4d86a6?auto=format&fit=crop&q=80&w=2670&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Expense Tracker Project" class="rounded-lg mb-6 w-full h-48 object-cover border border-gray-100">
         <h4 class="text-2xl font-bold mb-3 text-indigo-600">Expense Tracker</h4>
         <p class="text-gray-700 leading-relaxed mb-4 text-sm">A robust full-stack application enabling users to efficiently track daily expenses and manage personal budgeting, complete with a secure login system and <span class="font-bold">MySQL</span> backend.</p>
         <div class="flex flex-wrap gap-2 text-xs mb-4">
@@ -264,7 +343,6 @@
       </div>
 
       <div class="bg-white p-6 rounded-2xl shadow-xl transition-transform hover-card border-2 border-transparent">
-        <img src="https://images.unsplash.com/photo-1521587765099-cf56e7235d15?auto=format&fit=crop&q=80&w=2670&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Library Management System Project" class="rounded-lg mb-6 w-full h-48 object-cover border border-gray-100">
         <h4 class="text-2xl font-bold mb-3 text-indigo-600">Library Management System</h4>
         <p class="text-gray-700 leading-relaxed mb-4 text-sm">A comprehensive system for managing book issuance and returns, featuring secure authentication and an administrative panel, built using <span class="font-bold">JSP</span> and <span class="font-bold">Servlets</span>.</p>
         <div class="flex flex-wrap gap-2 text-xs mb-4">
@@ -276,7 +354,6 @@
       </div>
 
       <div class="bg-white p-6 rounded-2xl shadow-xl transition-transform hover-card border-2 border-transparent">
-        <img src="https://images.unsplash.com/photo-1582719500696-be4d31b26645?auto=format&fit=crop&q=80&w=2670&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Blood Management System Project" class="rounded-lg mb-6 w-full h-48 object-cover border border-gray-100">
         <h4 class="text-2xl font-bold mb-3 text-indigo-600">Blood Management System</h4>
         <p class="text-gray-700 leading-relaxed mb-4 text-sm">A vital system for managing blood donation requests, equipped with advanced filtering capabilities and <span class="font-bold">CSV export</span>, developed using <span class="font-bold">Java</span> and <span class="font-bold">MySQL</span> in <span class="font-bold">NetBeans</span>.</p>
         <div class="flex flex-wrap gap-2 text-xs mb-4">
@@ -313,10 +390,112 @@
     &copy; 2025 Divy Jain. All rights reserved. Built with ❤️ and <span class="text-indigo-600 font-medium">Tailwind CSS</span>.
   </footer>
 
+  <button id="chatbot-button" class="chatbot-button btn-gradient">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
+    </svg>
+  </button>
+
+  <div id="chatbot-window" class="chatbot-window hidden">
+    <div class="chatbot-header">
+      <h4 class="font-bold text-lg">Divy's Bot</h4>
+      <button id="close-chatbot" class="text-white hover:text-gray-200 transition-colors duration-200 focus:outline-none">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+    <div id="chatbot-messages" class="chatbot-messages flex flex-col">
+      <div class="chatbot-message-bot">Hi there! I'm Divy's personal assistant. How can I help you today?</div>
+    </div>
+    <div class="chatbot-input">
+      <input type="text" id="user-input" placeholder="Type your message..." class="flex-grow rounded-full px-4 py-2 bg-gray-100 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+      <button id="send-button" class="btn-gradient text-white rounded-full px-4 py-2 font-semibold">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+        </svg>
+      </button>
+    </div>
+  </div>
+
   <script>
     // Mobile menu toggle
     document.getElementById('mobile-menu-button').addEventListener('click', function() {
       document.getElementById('mobile-menu').classList.toggle('hidden');
+    });
+
+    // Chatbot functionality
+    const chatbotButton = document.getElementById('chatbot-button');
+    const chatbotWindow = document.getElementById('chatbot-window');
+    const closeChatbotButton = document.getElementById('close-chatbot');
+    const userInput = document.getElementById('user-input');
+    const sendButton = document.getElementById('send-button');
+    const messagesContainer = document.getElementById('chatbot-messages');
+
+    // Toggle chatbot window visibility
+    chatbotButton.addEventListener('click', () => {
+      chatbotWindow.classList.toggle('hidden');
+      chatbotWindow.classList.toggle('visible');
+    });
+
+    closeChatbotButton.addEventListener('click', () => {
+      chatbotWindow.classList.add('hidden');
+      chatbotWindow.classList.remove('visible');
+    });
+
+    // Handle sending a message
+    function sendMessage() {
+      const message = userInput.value.trim();
+      if (message !== '') {
+        // Append user message
+        const userMessageDiv = document.createElement('div');
+        userMessageDiv.className = 'chatbot-message-user';
+        userMessageDiv.textContent = message;
+        messagesContainer.appendChild(userMessageDiv);
+
+        // Simple bot response based on keywords
+        let botResponse = 'I am sorry, but I do not understand that request. I can provide information about Divy, his skills, and projects.';
+        const lowerCaseMessage = message.toLowerCase();
+
+        if (lowerCaseMessage.includes('hi') || lowerCaseMessage.includes('hello')) {
+          botResponse = 'Hello! What would you like to know about Divy?';
+        } else if (lowerCaseMessage.includes('name')) {
+          botResponse = 'His name is Divy Jain. He is an aspiring software engineer.';
+        } else if (lowerCaseMessage.includes('skills')) {
+          botResponse = 'Divy is proficient in Python, C++, Java, MySQL, and full-stack development with a focus on AI and ML basics.';
+        } else if (lowerCaseMessage.includes('projects')) {
+          botResponse = 'Divy has worked on a Python Chatbot, an Expense Tracker, a Library Management System, and a Blood Management System.';
+        } else if (lowerCaseMessage.includes('contact')) {
+          botResponse = 'You can contact Divy at divyj12349@gmail.com or call him at 7999436892.';
+        } else if (lowerCaseMessage.includes('bye') || lowerCaseMessage.includes('goodbye')) {
+          botResponse = 'Goodbye! Feel free to reach out if you have more questions.';
+        } else if (lowerCaseMessage.includes('university') || lowerCaseMessage.includes('college')) {
+          botResponse = 'Divy is a 2nd-year B.Tech CSE student at Medicaps University.';
+        } else if (lowerCaseMessage.includes('work') || lowerCaseMessage.includes('portfolio')) {
+          botResponse = 'You can find his projects on this website, including a Python Chatbot and a full-stack Expense Tracker.';
+        }
+
+        // Simulate a delay for the bot's response
+        setTimeout(() => {
+          const botMessageDiv = document.createElement('div');
+          botMessageDiv.className = 'chatbot-message-bot';
+          botMessageDiv.textContent = botResponse;
+          messagesContainer.appendChild(botMessageDiv);
+
+          // Scroll to the bottom
+          messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }, 500);
+
+        userInput.value = '';
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+      }
+    }
+
+    sendButton.addEventListener('click', sendMessage);
+    userInput.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        sendMessage();
+      }
     });
   </script>
 
